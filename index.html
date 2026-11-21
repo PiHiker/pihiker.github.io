@@ -32,7 +32,6 @@
     .card p {margin-top:0}
     .card .links {margin-top:auto;padding-top:.8rem}
     .note {border-left:3px solid var(--gold);background:transparent}
-    .tool {padding-block:1.6rem}
   </style>
 </head>
 <body>
@@ -45,7 +44,7 @@
     <div class="intro">
       <span class="label">PiHiker / Engineering field notes</span>
       <h1>Privacy, security, and Bitcoin.</h1>
-      <p>In penetration testing, one of my first questions is “What can someone on the other side of this connection learn?” That question also shapes how I build: send mining traffic over Tor, make API calls without an account, and give administrators a way to see who holds privileged access.</p>
+      <p>In penetration testing, one of my first questions is “What can someone on the other side of this connection learn?” That question shapes how I build ArkPool Gateway and ArkAPI: one sends mining traffic over Tor, and the other lets people pay for API calls without creating an account.</p>
     </div>
     <section aria-labelledby="projects">
       <h2 id="projects">Featured projects</h2>
@@ -72,12 +71,6 @@
       <p>In onion-only mode, losing connectivity is the right outcome. A direct connection might keep shares flowing, but it would expose the network address the operator chose to keep private.</p>
       <p>My experimental patches for <a href="https://github.com/p2poolv2/p2poolv2">P2Poolv2</a> address two separate questions: how to keep peer connections on Tor, and how to discover another peer by its onion address.</p>
     </article>
-    <section class="tool" aria-labelledby="audit">
-      <span class="label">Security tools / PowerShell</span>
-      <h2 id="audit">Who has privileged domain access?</h2>
-      <p>Start an Active Directory access review by listing the members of privileged groups, including Domain Admins and Backup Operators.</p>
-      <a href="https://github.com/PiHiker/privileged-domain-account-audit">View the account audit script</a>
-    </section>
   </main>
   <footer><strong>PiHiker</strong><a href="https://github.com/PiHiker?tab=repositories">Browse all repositories</a></footer>
 </body>
