@@ -37,13 +37,14 @@
     .card p {margin-top:0}
     .card .links {margin-top:auto;padding-top:.8rem}
     .note {border-left:3px solid var(--gold);background:transparent}
+    .note + .note {margin-top:1rem}
   </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header>
     <strong>PiHiker</strong>
-    <nav aria-label="Main"><a href="#projects">Projects</a><a href="#field-note">Field note</a><a href="https://github.com/PiHiker">GitHub</a></nav>
+    <nav aria-label="Main"><a href="#projects">Projects</a><a href="#field-notes">Field notes</a><a href="https://github.com/PiHiker">GitHub</a></nav>
   </header>
   <main id="main">
     <div class="intro">
@@ -76,14 +77,24 @@
         </article>
       </div>
     </section>
+    <section aria-labelledby="field-notes">
+    <h2 id="field-notes">Field notes</h2>
+    <article class="note" id="offline-wallet-check">
+      <span class="label">Bech32PassHunter / <time datetime="2026-11-21">21 November 2026</time></span>
+      <h3>Can a wallet tool stay offline while the computer stays online?</h3>
+      <p>A successful offline demo tells me the tool doesn’t need the internet. It doesn’t tell me what happens when something tries to connect. I wanted to check both.</p>
+      <p>I ran the public wallet demo through the Linux launcher. It found the expected match. In a separate check under the same launcher, only the loopback interface was visible and an outbound connection failed. When I simulated a failure to create that isolation, the launcher stopped instead of starting the tool with normal network access.</p>
+      <p>You can try the demo with <code>./offline.sh --demo</code> after installation. The launcher blocks network access for the tool and its workers. It doesn’t protect against someone recording your terminal. <a href="https://github.com/PiHiker/Bech32PassHunter#offline-setup">Offline setup instructions</a></p>
+    </article>
     <article class="note" id="field-note">
       <span class="label">Field note / Experimental P2Poolv2 work</span>
-      <h2>What should a node do when Tor goes offline?</h2>
+      <h3>What should a node do when Tor goes offline?</h3>
       <p>In onion-only mode, losing connectivity is the right outcome. A direct connection might keep shares flowing, but it would expose the network address the operator chose to keep private.</p>
       <p>My experimental patches for <a href="https://github.com/p2poolv2/p2poolv2">P2Poolv2</a> address two separate questions: how to keep peer connections on Tor, and how to discover another peer by its onion address.</p>
-      <h3>What I observed</h3>
+      <h4>What I observed</h4>
       <p>When I stopped Tor, the node lost its peers. That alone didn’t tell me whether it had tried another route, so I checked the traffic capture for direct fallback connections. I saw none during the outage. When Tor returned, the node connected to peers again.</p>
     </article>
+    </section>
   </main>
   <footer><strong>PiHiker</strong><a href="https://github.com/PiHiker?tab=repositories">Browse all repositories</a></footer>
 </body>
