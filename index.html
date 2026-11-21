@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="PiHiker’s field notes on Bitcoin tools, mining over Tor, and security engineering.">
+  <title>PiHiker · Field notes</title>
+  <style>
+    :root{color-scheme:dark;--ink:#f0f4e9;--muted:#b1c1b8;--mint:#99e3ba;--line:#375347;background:#101b19;color:var(--ink);font:17px/1.6 system-ui,sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#214038,transparent 38rem)}main,header,footer{max-width:64rem;margin:auto;padding:1.4rem clamp(1.2rem,5vw,3.5rem)}
+    header,footer,.facts{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}header{border-bottom:1px solid var(--line)}a{color:var(--mint);text-underline-offset:.22em}a:focus-visible{outline:2px solid #ffd393;outline-offset:4px}
+    .label,dt{font:600 .77rem/1.5 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--mint)}h1,h2,h3{line-height:1.1;letter-spacing:-.035em}h1{font-size:clamp(2.7rem,8vw,5.7rem);max-width:14ch;margin:.3em 0}h2{font-size:clamp(1.8rem,4vw,3rem);margin:.35em 0}p{color:var(--muted);max-width:64ch}.intro{padding:clamp(2rem,6vw,4rem) 0}.note{border:1px solid var(--line);border-radius:1rem;background:#172822;padding:clamp(1.2rem,4vw,2.4rem)}
+    .facts{justify-content:flex-start;gap:1rem 3rem;border-block:1px solid var(--line);padding:1rem 0}dd{margin:0;font:600 1.15rem ui-monospace,monospace}.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(16rem,100%),1fr));gap:1rem;margin:1rem 0 2rem}.projects article{padding:1.2rem;border:1px solid var(--line);border-radius:.6rem}footer{border-top:1px solid var(--line);color:var(--muted)}nav{display:flex;gap:1rem}
+  </style>
+</head>
+<body>
+  <header><strong>PiHiker</strong><nav aria-label="Main"><a href="#field-note">Field note</a><a href="https://github.com/PiHiker">GitHub</a></nav></header>
+  <main>
+    <section class="intro"><span class="label">Engineering field notes</span><h1>Bitcoin tools, tested in the field.</h1><p>I’m PiHiker. I build Bitcoin-funded APIs and run networking experiments where the failure case matters as much as the happy path.</p></section>
+    <article class="note" id="field-note"><span class="label">Field note 01 · Bitcoin networking</span><h2>What happens when Tor goes offline?</h2>
+      <p>A peer-to-peer mining node needs to find other nodes. My experimental work on P2Poolv2 asks whether it can learn onion addresses from its peers without advertising an IP address.</p>
+      <h3>The failure case</h3><p>If a node is configured to use only Tor, losing the proxy should mean losing its peers until Tor returns. Quietly switching to a direct connection would defeat the operator’s choice.</p>
+      <p><small>Status: local experimental patches for <a href="https://github.com/p2poolv2/p2poolv2">upstream P2Poolv2</a>.</small></p></article>
+    <section aria-labelledby="projects"><h2 id="projects">Projects</h2><div class="projects"><article><h3><a href="https://arkapi.dev/">ArkAPI</a></h3><p>Check a site’s TLS configuration, query Bitcoin data, or call an OpenAI-compatible chat endpoint. Paid calls use mainnet sats over Ark or Lightning, without an account.</p><a href="https://arkapi.dev/post-quantum-check/">Try the free TLS checker →</a> · <a href="https://arkapi.dev/docs/">API docs</a></article><article><h3><a href="https://github.com/PiHiker/privileged-domain-account-audit">Domain account audit</a></h3><p>A PowerShell tool for reviewing membership in privileged Active Directory groups.</p></article></div></section>
+  </main><footer><span>PiHiker · Independent engineering</span><a href="https://github.com/PiHiker">More on GitHub →</a></footer>
+</body></html>
