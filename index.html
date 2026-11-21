@@ -58,7 +58,7 @@
         <article class="card">
           <span class="label">01 / Mining software · Alpha</span>
           <h3>ArkPool Gateway</h3>
-          <p>Connect a miner to ArkPool over Tor. The gateway carries mining traffic; the pool handles payouts over Ark. Wallet keys stay out of the gateway.</p>
+          <p>Connect a miner to <a href="https://arkpool.org/">ArkPool</a> over Tor. The gateway carries mining traffic; the pool handles payouts over Ark. Wallet keys stay out of the gateway.</p>
           <p>With <a href="https://github.com/PiHiker/arkpool-gateway/blob/main/docs/NATIVE_V2.md">native Stratum V2 (SV2)</a>, a compatible miner authenticates the pool over its Tor onion service. ArkPool may have been the first Bitcoin mining pool to offer this combination, though that distinction is unconfirmed.</p>
           <div class="links"><a href="https://github.com/PiHiker/arkpool-gateway#readme">Read the gateway guide</a><a href="https://gitlab.com/arkpool">Packages on GitLab</a></div>
         </article>
@@ -79,6 +79,11 @@
     </section>
     <section aria-labelledby="field-notes">
     <h2 id="field-notes">Field notes</h2>
+    <article class="note" id="arkpool-stats">
+      <span class="label">ArkPool / Reading pool stats</span>
+      <h3>Why can share counts rise while hashrate stays flat?</h3>
+      <p>Shares can have different difficulty. The share chart counts each accepted event once; the hashrate chart weights verified work by difficulty. On the <a href="https://arkpool.org/">ArkPool dashboard</a>, use hashrate to compare work over time and the snapshot timestamp to see how fresh the numbers are.</p>
+    </article>
     <article class="note" id="offline-wallet-check">
       <span class="label">Bech32PassHunter / <time datetime="2026-11-21">21 November 2026</time></span>
       <h3>Can a wallet tool stay offline while the computer stays online?</h3>
