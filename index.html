@@ -2,27 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="PiHiker’s field notes on Bitcoin tools, mining over Tor, and security engineering.">
-  <title>PiHiker · Field notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore PiHiker’s ArkPool Gateway, Bitcoin-funded ArkAPI service, security tools, and field notes on onion-only networking.">
+  <title>PiHiker · Privacy, security, and Bitcoin</title>
   <style>
-    :root{color-scheme:dark;--ink:#f0f4e9;--muted:#b1c1b8;--mint:#99e3ba;--line:#375347;background:#101b19;color:var(--ink);font:17px/1.6 system-ui,sans-serif}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#214038,transparent 38rem)}main,header,footer{max-width:64rem;margin:auto;padding:1.4rem clamp(1.2rem,5vw,3.5rem)}
-    header,footer,.facts{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}header{border-bottom:1px solid var(--line)}a{color:var(--mint);text-underline-offset:.22em}a:focus-visible{outline:2px solid #ffd393;outline-offset:4px}
-    .label,dt{font:600 .77rem/1.5 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--mint)}h1,h2,h3{line-height:1.1;letter-spacing:-.035em}h1{font-size:clamp(2.7rem,8vw,5.7rem);max-width:14ch;margin:.3em 0}h2{font-size:clamp(1.8rem,4vw,3rem);margin:.35em 0}p{color:var(--muted);max-width:64ch}.intro{padding:clamp(2rem,6vw,4rem) 0}.note{border:1px solid var(--line);border-radius:1rem;background:#172822;padding:clamp(1.2rem,4vw,2.4rem)}
-    .facts{justify-content:flex-start;gap:1rem 3rem;border-block:1px solid var(--line);padding:1rem 0}dd{margin:0;font:600 1.15rem ui-monospace,monospace}.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(16rem,100%),1fr));gap:1rem;margin:1rem 0 2rem}.projects article{padding:1.2rem;border:1px solid var(--line);border-radius:.6rem}footer{border-top:1px solid var(--line);color:var(--muted)}nav{display:flex;gap:1rem}
+    :root {color-scheme:dark;--paper:#101b19;--card:#182a25;--ink:#f2f4eb;--soft:#bfd0c5;--mint:#9fe7bb;--gold:#ffd99b;--line:#405a4f;font:17px/1.6 system-ui,sans-serif}
+    * {box-sizing:border-box}
+    body {margin:0;color:var(--ink);background:radial-gradient(ellipse at top right,#223f35,transparent 42rem),var(--paper)}
+    header,main,footer {max-width:68rem;margin:auto;padding:1.25rem clamp(1.15rem,5vw,4rem)}
+    header,footer,nav,.links {display:flex;align-items:center;flex-wrap:wrap;gap:.6rem 1.25rem}
+    header,footer {justify-content:space-between;border-bottom:1px solid var(--line)}
+    footer {border-block:1px solid var(--line);color:var(--soft);margin-top:2rem}
+    a {color:var(--mint);text-underline-offset:.22em}
+    a:hover {color:var(--gold)}
+    :focus-visible {outline:3px solid var(--gold);outline-offset:4px}
+    .skip {position:absolute;left:.5rem;top:.5rem;transform:translateY(-180%);background:var(--paper);padding:.5rem}
+    .skip:focus {transform:none}
+    .intro {padding-block:clamp(2rem,6vw,4.5rem)}
+    .label {font:600 .78rem/1.45 ui-monospace,monospace;letter-spacing:.09em;text-transform:uppercase;color:var(--mint)}
+    h1,h2,h3 {line-height:1.13;letter-spacing:-.035em;text-wrap:balance}
+    h1 {font-size:clamp(2.5rem,7vw,4.8rem);max-width:19ch;margin:.2em 0}
+    h2 {font-size:clamp(1.6rem,4vw,2.5rem);margin:.35em 0}
+    h3 {font-size:1.65rem;margin:.5em 0}
+    p {max-width:63ch;color:var(--soft)}
+    .grid {display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));margin-block:1rem 2.5rem}
+    .card,.note {padding:clamp(1.2rem,3vw,2rem);border:1px solid var(--line);border-radius:.8rem;background:var(--card)}
+    .card {display:flex;flex-direction:column;border-top:3px solid var(--mint)}
+    .card:nth-child(2) {border-top-color:var(--gold)}
+    .card p {margin-top:0}
+    .card .links {margin-top:auto;padding-top:.8rem}
+    .note {border-left:3px solid var(--gold);background:transparent}
+    .tool {padding-block:1.6rem}
   </style>
 </head>
 <body>
-  <header><strong>PiHiker</strong><nav aria-label="Main"><a href="#field-note">Field note</a><a href="https://github.com/PiHiker">GitHub</a></nav></header>
-  <main>
-    <section class="intro"><span class="label">Engineering field notes</span><h1>Bitcoin tools, tested in the field.</h1><p>I’m PiHiker. I build Bitcoin-funded APIs and run networking experiments where the failure case matters as much as the happy path.</p></section>
-    <article class="note" id="field-note"><span class="label">Field note 01 · Bitcoin networking</span><h2>What happens when Tor goes offline?</h2>
-      <p>A peer-to-peer mining node needs to find other nodes. My experimental work on P2Poolv2 asks whether it can learn onion addresses from its peers without advertising an IP address.</p>
-      <h3>The failure case</h3><p>If a node is configured to use only Tor, losing the proxy should mean losing its peers until Tor returns. Quietly switching to a direct connection would defeat the operator’s choice.</p>
-      <p><small>Status: local experimental patches for <a href="https://github.com/p2poolv2/p2poolv2">upstream P2Poolv2</a>.</small></p></article>
-    <section aria-labelledby="projects"><h2 id="projects">Projects</h2><div class="projects">
-      <article><h3><a href="https://gitlab.com/arkpool">ArkPool</a></h3><p>ArkPool Gateway connects Bitcoin miners to the pool over Tor. The pool handles payouts over Ark; wallet keys stay out of the gateway.</p><a href="https://gitlab.com/arkpool/arkpool-gateway">Explore the gateway →</a></article>
-      <article><h3><a href="https://arkapi.dev/">ArkAPI</a></h3><p>Check a site’s TLS configuration, query Bitcoin data, or call an OpenAI-compatible chat endpoint. Paid calls use mainnet sats over Ark or Lightning, without an account.</p><a href="https://arkapi.dev/post-quantum-check/">Try the free TLS checker →</a> · <a href="https://arkapi.dev/docs/">API docs</a></article><article><h3><a href="https://github.com/PiHiker/privileged-domain-account-audit">Domain account audit</a></h3><p>A PowerShell tool for reviewing membership in privileged Active Directory groups.</p></article></div></section>
-  </main><footer><span>PiHiker · Independent engineering</span><a href="https://github.com/PiHiker">More on GitHub →</a></footer>
-</body></html>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <strong>PiHiker</strong>
+    <nav aria-label="Main"><a href="#projects">Projects</a><a href="#field-note">Field note</a><a href="https://github.com/PiHiker">GitHub</a></nav>
+  </header>
+  <main id="main">
+    <div class="intro">
+      <span class="label">PiHiker / Engineering field notes</span>
+      <h1>Privacy, security, and Bitcoin.</h1>
+      <p>In penetration testing, one of my first questions is “What can someone on the other side of this connection learn?” That question also shapes how I build: send mining traffic over Tor, make API calls without an account, and give administrators a way to see who holds privileged access.</p>
+    </div>
+    <section aria-labelledby="projects">
+      <h2 id="projects">Featured projects</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="label">01 / Mining software · Alpha</span>
+          <h3>ArkPool Gateway</h3>
+          <p>Connect a miner to ArkPool over Tor. The gateway carries mining traffic; the pool handles payouts over Ark. Wallet keys stay out of the gateway.</p>
+          <p>Start with the gateway guide for Stratum compatibility. The upstream GitLab group also hosts the Umbrel and StartOS packages.</p>
+          <div class="links"><a href="https://github.com/PiHiker/arkpool-gateway#readme">Read the gateway guide</a><a href="https://gitlab.com/arkpool">Packages on GitLab</a></div>
+        </article>
+        <article class="card">
+          <span class="label">02 / Hosted service · Mainnet</span>
+          <h3>ArkAPI</h3>
+          <p>Try a TLS check without an account. For paid calls, fund a session over Ark or Lightning, then use its balance to query Bitcoin data or call an OpenAI-compatible chat endpoint.</p>
+          <p>Building locally? The <a href="https://github.com/PiHiker/arkapi">earlier Signet implementation</a> uses test funds. The <a href="https://arkapi.dev/">hosted service</a> uses mainnet sats.</p>
+          <div class="links"><a href="https://arkapi.dev/post-quantum-check/">Try the free TLS checker</a><a href="https://arkapi.dev/docs/">Live API docs</a></div>
+        </article>
+      </div>
+    </section>
+    <article class="note" id="field-note">
+      <span class="label">Field note / Experimental P2Poolv2 work</span>
+      <h2>What should a node do when Tor goes offline?</h2>
+      <p>In onion-only mode, losing connectivity is the right outcome. A direct connection might keep shares flowing, but it would expose the network address the operator chose to keep private.</p>
+      <p>My experimental patches for <a href="https://github.com/p2poolv2/p2poolv2">P2Poolv2</a> address two separate questions: how to keep peer connections on Tor, and how to discover another peer by its onion address.</p>
+    </article>
+    <section class="tool" aria-labelledby="audit">
+      <span class="label">Security tools / PowerShell</span>
+      <h2 id="audit">Who has privileged domain access?</h2>
+      <p>Start an Active Directory access review by listing the members of privileged groups, including Domain Admins and Backup Operators.</p>
+      <a href="https://github.com/PiHiker/privileged-domain-account-audit">View the account audit script</a>
+    </section>
+  </main>
+  <footer><strong>PiHiker</strong><a href="https://github.com/PiHiker?tab=repositories">Browse all repositories</a></footer>
+</body>
+</html>
